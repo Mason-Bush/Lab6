@@ -8,13 +8,22 @@ def encoder(message):
         result += new_digit
     return result
 
+
 #Decoder function
-def decoder(message):
-    result = ''
-    for digit in message:
-        new_digit = str((int(digit) - 3) % 10)
-        result += new_digit
-    return result
+def decode(user_entry):
+    str_pass = ""
+    storage = ""
+    user_input = []
+    for item in user_entry:
+        if int(item):
+            user_input.append(int(item) + 3)
+        else:
+            print("Your password contained an invalid entry.")
+            break
+    for item in user_input:
+        str_pass += str(item - 3)
+        storage += str(item)
+    return str_pass
 
 
 def main():
@@ -31,7 +40,7 @@ def main():
 
         #Option Results for encoder, decoder, and quit
         if choice == "1":
-            value = input("Please enter your password to encode: ")
+            value = decode(input("Please enter your password to encode: "))
             print("Your password has been encoded and stored!\n")
         elif choice == "2":
             print(f"The encoded password is {encoder(value)}, and the original password is {value}.")
